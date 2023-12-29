@@ -2,16 +2,32 @@ import express, { Router, Request, Response } from 'express'
 import Agent from '../models/Agent';
 
 const validator = require('validator');
-const { v4: uuidv4 } = require('uuid')
-
-
 const router: Router = express.Router();
+
+const { v4: uuidv4 } = require('uuid')
 
 router.get('/agents', async (req: Request, res: Response) => {
     try {
         const agent = await Agent.find()
         await Agent.create(agent)
 
+        res.status(200).json(agent)
+    } catch (error) {
+        res.status(500).json({ error: error })
+
+    }
+})
+
+router.get('/agents/:id', async (req: Request, res: Response) => {
+    const agentId = req.params.id
+    try {
+        const agent = await Agent.findOne({ id: agentId })
+
+        // if (!agent) {
+        //     res.status(422).json({ message: "Id de agente inválido" })
+        // }
+
+        await Agent.create(agent)
         res.status(200).json(agent)
     } catch (error) {
         res.status(500).json({ error: error })

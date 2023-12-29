@@ -24,7 +24,7 @@ router.get('/agents/:agentId', async (req: Request, res: Response) => {
         const agent = await Agent.findOne({ id: agentId })
 
         if (!agent) {
-            res.status(404).json({ message: "Id de agente inválido" })
+            res.status(404).json({ message: "Invalid agent id" })
         }
 
         await Agent.create(agent)
@@ -40,7 +40,7 @@ router.post('/agents', async (req: Request, res: Response) => {
         const { name, login, medias, password } = req.body;
 
         if (!name || !login || !password || validator.isEmpty(name) || validator.isEmpty(login) || validator.isEmpty(password)) {
-            return res.status(400).json({ error: 'Dados inválidos. Certifique-se de que name, login e password não sejam nulos ou vazios.' })
+            return res.status(400).json({ error: "Invalid data. Make sure that name, login and password are not null or empty." })
         }
 
         const id = uuidv4()
@@ -64,7 +64,7 @@ router.post('/agents', async (req: Request, res: Response) => {
         })
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Erro ao criar agente.' });
+        res.status(500).json({ error: 'Error creating agent.' });
     }
 })
 
@@ -78,7 +78,7 @@ router.put('/agents/:agentId', async (req: Request, res: Response) => {
         const existingAgent = await Agent.findOne({ id: agentId });
 
         if (!existingAgent) {
-            return res.status(404).json({ error: 'Agente não encontrado.' });
+            return res.status(404).json({ error: 'Agent not found.' });
         }
 
         // Atualizar os campos desejados
@@ -93,7 +93,7 @@ router.put('/agents/:agentId', async (req: Request, res: Response) => {
         res.status(200).json(existingAgent);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Erro ao atualizar agente.' });
+        res.status(500).json({ error: 'Error updating agent.' });
     }
 });
 
@@ -103,7 +103,7 @@ router.delete('/agents/:agentId', async (req: Request, res: Response) => {
         await Agent.deleteOne({ id: agentId })
 
 
-        res.status(200).json('Agente removido com sucesso!')
+        res.status(200).json('Agent removed successfully!')
     } catch (error) {
         res.status(500).json({ error: error })
 

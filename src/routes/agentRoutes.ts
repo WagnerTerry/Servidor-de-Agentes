@@ -40,10 +40,17 @@ router.post('/agents', async (req: Request, res: Response) => {
         const { name, login, medias, password } = req.body;
 
         if (!name || !login || !password || validator.isEmpty(name) || validator.isEmpty(login) || validator.isEmpty(password)) {
-            return res.status(400).json({ error: "Invalid data. Make sure that name, login and password are not null or empty." })
+            return res.status(400).json({ error: "Invalid data. Make sure that name, login and password are not null or empty." });
         }
 
-        const id = uuidv4()
+        // Verificar se já existe um agente com o mesmo login
+        const existingAgent = await Agent.findOne({ login });
+
+        if (existingAgent) {
+            return res.status(400).json({ error: "A user with the same login already exists." });
+        }
+
+        const id = uuidv4();
 
         const newAgent = new Agent({
             name,
@@ -51,7 +58,7 @@ router.post('/agents', async (req: Request, res: Response) => {
             medias,
             id,
             domain: "google.com"
-        })
+        });
 
         await newAgent.save();
 
@@ -61,12 +68,12 @@ router.post('/agents', async (req: Request, res: Response) => {
             medias,
             id,
             domain: "google.com"
-        })
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error creating agent.' });
     }
-})
+});
 
 router.put('/agents/:agentId', async (req: Request, res: Response) => {
     const agentId = req.params.agentId;

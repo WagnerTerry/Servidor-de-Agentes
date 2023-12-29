@@ -8,3 +8,4 @@
 - npm i --save-dev @types/express
 - npm i cors
 - npm i uuid
+- npm i validator

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "mongoose": "^8.0.3",
     "uuid": "^9.0.1",
     "validator": "^13.11.0"
   }

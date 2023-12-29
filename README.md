@@ -9,3 +9,4 @@
 - npm i cors
 - npm i uuid
 - npm i validator
+- npm i mongoose

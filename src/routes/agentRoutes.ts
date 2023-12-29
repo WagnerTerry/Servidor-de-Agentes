@@ -18,8 +18,8 @@ router.get('/agents', async (req: Request, res: Response) => {
     }
 })
 
-router.get('/agents/:id', async (req: Request, res: Response) => {
-    const agentId = req.params.id
+router.get('/agents/:agentId', async (req: Request, res: Response) => {
+    const agentId = req.params.agentId
     try {
         const agent = await Agent.findOne({ id: agentId })
 
@@ -68,8 +68,8 @@ router.post('/agents', async (req: Request, res: Response) => {
     }
 })
 
-router.put('/agents/:id', async (req: Request, res: Response) => {
-    const agentId = req.params.id;
+router.put('/agents/:agentId', async (req: Request, res: Response) => {
+    const agentId = req.params.agentId;
 
     try {
         const { name, login, medias, password } = req.body;
@@ -96,5 +96,18 @@ router.put('/agents/:id', async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Erro ao atualizar agente.' });
     }
 });
+
+router.delete('/agents/:agentId', async (req: Request, res: Response) => {
+    const agentId = req.params.agentId
+    try {
+        await Agent.deleteOne({ id: agentId })
+
+
+        res.status(200).json('Agente removido com sucesso!')
+    } catch (error) {
+        res.status(500).json({ error: error })
+
+    }
+})
 
 export default router

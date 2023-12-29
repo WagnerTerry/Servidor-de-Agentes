@@ -23,9 +23,9 @@ router.get('/agents/:id', async (req: Request, res: Response) => {
     try {
         const agent = await Agent.findOne({ id: agentId })
 
-        // if (!agent) {
-        //     res.status(422).json({ message: "Id de agente inválido" })
-        // }
+        if (!agent) {
+            res.status(404).json({ message: "Id de agente inválido" })
+        }
 
         await Agent.create(agent)
         res.status(200).json(agent)
@@ -67,5 +67,34 @@ router.post('/agents', async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Erro ao criar agente.' });
     }
 })
+
+router.put('/agents/:id', async (req: Request, res: Response) => {
+    const agentId = req.params.id;
+
+    try {
+        const { name, login, medias, password } = req.body;
+
+        // Verificar se o agente com o ID fornecido existe
+        const existingAgent = await Agent.findOne({ id: agentId });
+
+        if (!existingAgent) {
+            return res.status(404).json({ error: 'Agente não encontrado.' });
+        }
+
+        // Atualizar os campos desejados
+        existingAgent.name = name;
+        existingAgent.login = login;
+        existingAgent.medias = medias;
+        existingAgent.password = password;
+
+        // Salvar as alterações no banco de dados
+        await existingAgent.save();
+
+        res.status(200).json(existingAgent);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao atualizar agente.' });
+    }
+});
 
 export default router

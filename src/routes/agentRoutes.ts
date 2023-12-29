@@ -7,8 +7,16 @@ const { v4: uuidv4 } = require('uuid')
 
 const router: Router = express.Router();
 
-router.get('/agents', (req: Request, res: Response) => {
-    res.send("API ok agents")
+router.get('/agents', async (req: Request, res: Response) => {
+    try {
+        const agent = await Agent.find()
+        await Agent.create(agent)
+
+        res.status(200).json(agent)
+    } catch (error) {
+        res.status(500).json({ error: error })
+
+    }
 })
 
 router.post('/agents', async (req: Request, res: Response) => {
@@ -31,7 +39,7 @@ router.post('/agents', async (req: Request, res: Response) => {
 
         await newAgent.save();
 
-        res.json({
+        res.status(201).json({
             name,
             login,
             medias,

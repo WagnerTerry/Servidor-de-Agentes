@@ -24,6 +24,8 @@ const Agent = mongoose.model('Agent', {
             handleMode: String
         }
     },
-    password: String
+    password: String,
+    id: String,
+    domain: String
 })
 export default Agent

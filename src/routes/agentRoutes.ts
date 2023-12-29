@@ -110,4 +110,27 @@ router.delete('/agents/:agentId', async (req: Request, res: Response) => {
     }
 })
 
+router.delete('/agents', async (req: Request, res: Response) => {
+    try {
+        const { login } = req.body;
+
+        // Validar se o login foi fornecido
+        if (!login) {
+            return res.status(400).json({ error: 'Login not provided.' });
+        }
+
+        // Buscar e excluir o agente com base no login
+        const deletedAgent = await Agent.findOneAndDelete({ login });
+
+        if (!deletedAgent) {
+            return res.status(404).json({ error: 'Agent not found.' });
+        }
+
+        res.status(200).json({ message: 'Agent deleted successfully.', deletedAgent });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error deleting agent.' });
+    }
+});
+
 export default router

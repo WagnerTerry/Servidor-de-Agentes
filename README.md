@@ -10,3 +10,6 @@
 - npm i uuid
 - npm i validator
 - npm i mongoose
+
+## Rodando o banco no docker
+- docker exec -it backend_mongodb_1 mongosh -u root -p root

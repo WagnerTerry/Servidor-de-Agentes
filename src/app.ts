@@ -10,9 +10,10 @@ const PORT: number = 3002;
 app.use(express.json())
 
 // Conecta ao MongoDB
-mongoose.connect('mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.1.1', {
+mongoose.connect('mongodb://root:root@127.0.0.1:27017?directConnection=true&serverSelectionTimeoutMS=2000', {
     user: 'root',
     pass: 'root',
+    appName: 'agents server'
 });
 
 const db = mongoose.connection;

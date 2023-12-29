@@ -7,8 +7,8 @@ const PORT: number = 3002;
 
 app.use(express.json())
 
-app.use('/v1', agentRoutes)
 app.use('/v1', health)
+app.use('/v1/public', agentRoutes)
 
 
 app.listen(PORT, () => {

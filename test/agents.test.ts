@@ -172,4 +172,14 @@ describe('testing agent routes', () => {
     //         });
     //     }
     // });
+
+    // it('should delete an existing agent', async () => {
+
+    //     const response = await request(app)
+    //         .delete(`${baseURL}/agents/12342}`);
+
+    //     expect(response.status).toBe(200);
+    //     expect(response.body).toEqual('Agent removed successfully!');
+
+    // });
 });

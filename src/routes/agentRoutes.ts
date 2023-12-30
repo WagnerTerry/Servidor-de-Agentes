@@ -11,9 +11,9 @@ router.get('/agents', async (req: Request, res: Response) => {
         const agent = await Agent.find()
         await Agent.create(agent)
 
-        res.status(200).json(agent)
+        return res.status(200).json(agent)
     } catch (error) {
-        res.status(500).json({ error: error })
+        return res.status(500).json({ error: error })
 
     }
 })
@@ -24,13 +24,13 @@ router.get('/agents/:agentId', async (req: Request, res: Response) => {
         const agent = await Agent.findOne({ id: agentId })
 
         if (!agent) {
-            res.status(404).json({ message: "Invalid agent id" })
+            return res.status(404).json({ message: "Invalid agent id" })
         }
 
         await Agent.create(agent)
-        res.status(200).json(agent)
+        return res.status(200).json(agent)
     } catch (error) {
-        res.status(500).json({ error: error })
+        return res.status(500).json({ error: error })
 
     }
 })
@@ -62,7 +62,7 @@ router.post('/agents', async (req: Request, res: Response) => {
 
         await newAgent.save();
 
-        res.status(201).json({
+        return res.status(201).json({
             name,
             login,
             medias,
@@ -71,7 +71,7 @@ router.post('/agents', async (req: Request, res: Response) => {
         });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error creating agent.' });
+        return res.status(500).json({ error: 'Error creating agent.' });
     }
 });
 
@@ -97,10 +97,10 @@ router.put('/agents/:agentId', async (req: Request, res: Response) => {
         // Salvar as alterações no banco de dados
         await existingAgent.save();
 
-        res.status(200).json(existingAgent);
+        return res.status(200).json(existingAgent);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error updating agent.' });
+        return res.status(500).json({ error: 'Error updating agent.' });
     }
 });
 
@@ -110,9 +110,9 @@ router.delete('/agents/:agentId', async (req: Request, res: Response) => {
         await Agent.deleteOne({ id: agentId })
 
 
-        res.status(200).json('Agent removed successfully!')
+        return res.status(200).json('Agent removed successfully!')
     } catch (error) {
-        res.status(500).json({ error: error })
+        return res.status(500).json({ error: error })
 
     }
 })
@@ -133,10 +133,10 @@ router.delete('/agents', async (req: Request, res: Response) => {
             return res.status(404).json({ error: 'Agent not found.' });
         }
 
-        res.status(200).json({ message: 'Agent deleted successfully.', deletedAgent });
+        return res.status(200).json({ message: 'Agent deleted successfully.', deletedAgent });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Error deleting agent.' });
+        return res.status(500).json({ error: 'Error deleting agent.' });
     }
 });
 

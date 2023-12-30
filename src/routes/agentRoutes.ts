@@ -133,7 +133,7 @@ router.delete('/agents', async (req: Request, res: Response) => {
             return res.status(404).json({ error: 'Agent not found.' });
         }
 
-        return res.status(200).json({ message: 'Agent deleted successfully.', deletedAgent });
+        return res.status(200).json({ message: 'Agent deleted successfully.' });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Error deleting agent.' });

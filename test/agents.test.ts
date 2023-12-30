@@ -182,4 +182,25 @@ describe('testing agent routes', () => {
     //     expect(response.body).toEqual('Agent removed successfully!');
 
     // });
+
+    it('should delete an existing agent by login', async () => {
+
+        const response = await request(app)
+            .delete(`${baseURL}/agents`)
+            .send({ login: 'existingagent' });
+
+        if (response.status === 400) {
+            expect(response.status).toBe(400);
+            expect(response.body).toEqual({ message: "Login not provided." })
+        } else if (response.status === 404) {
+            expect(response.status).toBe(404);
+            expect(response.body).toEqual({ message: "Agent not found." })
+        } else {
+            expect(response.status).toBe(200);
+            expect(response.body).toEqual({
+                message: 'Agent deleted successfully.',
+
+            });
+        }
+    });
 });

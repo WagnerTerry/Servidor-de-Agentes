@@ -133,4 +133,43 @@ describe('testing agent routes', () => {
     //         error: 'Invalid data. Make sure that name, login and password are not null or empty.',
     //     });
     // });
+
+    // it('should update an existing agent', async () => {
+    //     // Crie um agente no banco de dados para simular um agente existente
+    //     const existingAgent = await Agent.create({
+    //         name: 'ExistingAgent',
+    //         login: 'existingagent',
+    //         password: 'password123',
+    //         medias: ['media1', 'media2'],
+    //         domain: 'google.com',
+    //     });
+
+    //     const updatedAgentData = {
+    //         name: 'UpdatedAgent',
+    //         login: 'updatedagent',
+    //         password: 'newpassword',
+    //         medias: ['newmedia1', 'newmedia2'],
+    //     };
+
+    //     const response = await request(app)
+    //         .put(`${baseURL}/agents/${existingAgent._id}`)
+    //         .send(updatedAgentData);
+
+    //     if (response.status === 404) {
+    //         expect(response.status).toBe(404);
+    //         expect(response.body).toEqual({
+    //             error: 'Agent not found.',
+    //         });
+    //     } else {
+    //         expect(response.status).toBe(200);
+    //         expect(response.body).toEqual({
+    //             id: existingAgent.id.toString(),
+    //             name: 'UpdatedAgent',
+    //             login: 'updatedagent',
+    //             password: 'newpassword',
+    //             medias: ['newmedia1', 'newmedia2'],
+    //             domain: 'google.com',
+    //         });
+    //     }
+    // });
 });

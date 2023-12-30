@@ -16,5 +16,10 @@
 - npm i --save-dev jest @types/jest ts-jest
 
 
-## Rodando o banco no docker
-- docker exec -it backend_mongodb_1 mongosh -u root -p root
+## Rodando o projeto
+- no terminal instale as dependencias rodando
+- npm i
+- logo após execute o npm run dev
+- abra uma outra aba no terminal para rodar o docker com o comando
+- docker-compose up -d
+- para rodar os testes, execute npm test

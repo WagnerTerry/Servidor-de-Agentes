@@ -10,6 +10,9 @@
 - npm i uuid
 - npm i validator
 - npm i mongoose
+- npm install --save-dev supertest
+- npm install --save-dev jest
+- npm i --save-dev @types/jest
 
 ## Rodando o banco no docker
 - docker exec -it backend_mongodb_1 mongosh -u root -p root

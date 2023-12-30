@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/app.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "tsx watch src/app.ts"
   },
   "keywords": [],
@@ -12,8 +12,12 @@
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
     "@types/node": "^20.10.5",
+    "@types/supertest": "^6.0.2",
     "express": "^4.18.2",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },

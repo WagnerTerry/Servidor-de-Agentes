@@ -29,3 +29,5 @@ app.use('/v1/public', agentRoutes)
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })
+
+export default app;

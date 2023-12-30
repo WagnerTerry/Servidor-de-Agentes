@@ -33,14 +33,8 @@ afterAll(async () => {
     }
 });
 
-describe('GET /agents', () => {
+describe('testing agent routes', () => {
     it('should get a list of agents', async () => {
-        // Criar alguns agentes para simular dados no banco de dados
-        await Agent.create([
-            { name: 'Agent1', login: 'agent1', password: 'password123', domain: 'google.com' },
-            { name: 'Agent2', login: 'agent2', password: 'password456', domain: 'google.com' },
-            // Adicione mais agentes conforme necessário
-        ]);
 
         // Fazer uma solicitação GET para a rota /agents
         const response = await request(app).get(`${baseURL}/agents`);
@@ -49,7 +43,26 @@ describe('GET /agents', () => {
         expect(response.status).toBe(200);
 
         // Verificar o corpo da resposta
-        expect(response.body).toBeInstanceOf(Array);
+        expect(Array.isArray(response.body)).toBe(true)
         expect(response.body.length).toBeGreaterThan(0);
     });
+
+    it('should return agent details for a valid agentId', async () => {
+
+        // Faça uma solicitação GET para o endpoint com o ID do agente criado
+        const response = await request(app).get(`/agents/9f90d407-4944-4029-b24c-05088c17f112}`);
+
+        // Verifique o status da resposta
+        expect(response.status).toBe(200);
+
+        // Verifique se a resposta é um objeto que contém os detalhes do agente
+        expect(response.body).toEqual(expect.objectContaining({
+            id: expect.any(String),
+            name: 'TestAgent',
+            login: 'testagent',
+            password: 'password123',
+            domain: 'example.com',
+        }));
+    });
+
 });

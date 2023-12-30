@@ -13,6 +13,8 @@
 - npm install --save-dev supertest
 - npm install --save-dev jest
 - npm i --save-dev @types/jest
+- npm i --save-dev jest @types/jest ts-jest
+
 
 ## Rodando o banco no docker
 - docker exec -it backend_mongodb_1 mongosh -u root -p root

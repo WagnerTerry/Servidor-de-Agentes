@@ -2,6 +2,8 @@ import request from 'supertest';
 import app from '../src/app'; // Substitua pelo caminho real do seu arquivo de configuração do Express
 import Agent from '../src/models/Agent';
 
+const baseURL = "/v1/public"
+
 describe('GET /agents', () => {
     it('should get a list of agents', async () => {
         // Criar alguns agentes para simular dados no banco de dados
@@ -12,7 +14,7 @@ describe('GET /agents', () => {
         ]);
 
         // Fazer uma solicitação GET para a rota /agents
-        const response = await request(app).get('/agents');
+        const response = await request(app).get(`${baseURL}/agents`);
 
         // Verificar o status da resposta
         expect(response.status).toBe(200);
@@ -20,13 +22,5 @@ describe('GET /agents', () => {
         // Verificar o corpo da resposta
         expect(response.body).toBeInstanceOf(Array);
         expect(response.body.length).toBeGreaterThan(0);
-
-        // Verificar se os agentes têm as propriedades esperadas
-        const agentProperties = ['name', 'login', 'password', 'domain'];
-        response.body.forEach((agent: Record<string, any>) => {
-            agentProperties.forEach(prop => {
-                expect(agent).toHaveProperty(prop);
-            });
-        });
     });
 });

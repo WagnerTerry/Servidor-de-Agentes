@@ -25,9 +25,11 @@ db.once('open', () => {
 app.use('/v1', health)
 app.use('/v1/public', agentRoutes)
 
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`Server is running on ${PORT}`)
+    })
+}
 
-app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`)
-})
 
 export default app;

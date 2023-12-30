@@ -22,4 +22,4 @@
 - logo após execute o npm run dev
 - abra uma outra aba no terminal para rodar o docker com o comando
 - docker-compose up -d
-- para rodar os testes, execute npm test
+- para rodar os testes execute npm test

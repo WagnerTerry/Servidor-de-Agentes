@@ -88,4 +88,49 @@ describe('testing agent routes', () => {
     //     // Verifique o status da resposta
     //     expect(response.status).toBe(500);
     // });
+
+    // it('should create a new agent', async () => {
+    //     const agentData = {
+    //         name: 'Alex',
+    //         login: 'alex',
+    //         password: 'alexful',
+    //     };
+
+    //     const response = await request(app)
+    //         .post(`${baseURL}/agents`)
+    //         .send(agentData);
+
+    //     if (response.status === 400) {
+    //         expect(response.status).toBe(400);
+    //         expect(response.body).toEqual({
+    //             error: 'A user with the same login already exists.',
+    //         });
+    //     } else {
+    //         expect(response.status).toBe(201);
+    //         expect(response.body).toEqual({
+    //             name: 'Alex',
+    //             login: 'alex',
+    //             id: expect.any(String),
+    //             domain: 'google.com',
+    //         });
+    //     }
+    // });
+
+    // it('should return 400 for invalid data', async () => {
+    //     const invalidAgentData = {
+    //         name: '',
+    //         login: '',
+    //         password: '',
+    //         medias: ['media1', 'media2'],
+    //     };
+
+    //     const response = await request(app)
+    //         .post(`${baseURL}/agents`)
+    //         .send(invalidAgentData);
+
+    //     expect(response.status).toBe(400);
+    //     expect(response.body).toEqual({
+    //         error: 'Invalid data. Make sure that name, login and password are not null or empty.',
+    //     });
+    // });
 });

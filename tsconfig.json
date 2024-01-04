@@ -13,6 +13,10 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "strict": true,
-    "noImplicitAny": true,
-  }
+    "noImplicitAny": true
+  },
+  "include": [
+    "src/**/*.ts",  // Inclui arquivos TypeScript dentro do diretório 'src'
+    "test/**/*.ts"  // Inclui arquivos TypeScript dentro do diretório 'test'
+  ]
 }

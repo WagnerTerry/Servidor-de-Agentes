@@ -70,7 +70,6 @@ describe('testing agent routes', () => {
 
         // Verifique o status da resposta
         expect(response.status).toBe(404);
-        console.log("reso", response.body)
 
         // Verifique se a resposta contém a mensagem adequada para um ID de agente inválido
         expect(response.body).toEqual({ message: 'Invalid agent id' });
